@@ -18,6 +18,7 @@ public class Ventanaalta extends javax.swing.JFrame {
      */
     public Ventanaalta() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

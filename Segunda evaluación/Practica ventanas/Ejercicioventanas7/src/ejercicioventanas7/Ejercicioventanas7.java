@@ -57,8 +57,8 @@ public static void generardatos(){
     oEmpleado.setDNI("22222222B");
     
     administrador=new Usuario();
-    administrador.setNombre("Julen");
-    administrador.setContraseña("1234");
+    administrador.setNombre("a");
+    administrador.setContraseña("a");
 }    
 public static void salir(){
     System.exit(0);
@@ -82,7 +82,9 @@ else{
     v.setVisible(false);}    
 }}
 public static void limpiarventana(){
-    v.setVisible(false);
+    valta=new Ventanaalta();
+    
+    vmenu.setVisible(false);
     valta.setVisible(true);
 }
 public static void cancelar(){
