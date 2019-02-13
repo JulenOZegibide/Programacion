@@ -13,15 +13,15 @@ import java.time.LocalDate;
  */
 public class Empleado {
     private String DNI;
-    private String NNS;
+    private String NSS;
     private String Nombre;
     private String Apellidos;
     private String Direccion;
     private String Telefono;
     private Character sexo;
     private Character estadocivil;
-    private LocalDate fechaalta;
-    private String numeroemlpeado;
+    private String fechaalta;
+    private String numeroempleado;
     private Contrato c;
     private Departamento d;
     private Usuario u;
@@ -29,9 +29,9 @@ public class Empleado {
     public Empleado() {
     }
 
-    public Empleado(String DNI, String NNS, String Nombre, String Apellidos, String Direccion, String Telefono, Character sexo, Character estadocivil, LocalDate fechaalta, String numeroemlpeado, Contrato c, Departamento d, Usuario u) {
+    public Empleado(String DNI, String NNS, String Nombre, String Apellidos, String Direccion, String Telefono, Character sexo, Character estadocivil, String fechaalta, String numeroemlpeado, Contrato c, Departamento d, Usuario u) {
         this.DNI = DNI;
-        this.NNS = NNS;
+        this.NSS = NSS;
         this.Nombre = Nombre;
         this.Apellidos = Apellidos;
         this.Direccion = Direccion;
@@ -39,7 +39,7 @@ public class Empleado {
         this.sexo = sexo;
         this.estadocivil = estadocivil;
         this.fechaalta = fechaalta;
-        this.numeroemlpeado = numeroemlpeado;
+        this.numeroempleado = numeroemlpeado;
         this.c = c;
         this.d = d;
         this.u = u;
@@ -53,12 +53,12 @@ public class Empleado {
         this.DNI = DNI;
     }
 
-    public String getNNS() {
-        return NNS;
+    public String getNSS() {
+        return NSS;
     }
 
-    public void setNNS(String NNS) {
-        this.NNS = NNS;
+    public void setNSS(String NSS) {
+        this.NSS = NSS;
     }
 
     public String getNombre() {
@@ -109,20 +109,20 @@ public class Empleado {
         this.estadocivil = estadocivil;
     }
 
-    public LocalDate getFechaalta() {
+    public String getFechaalta() {
         return fechaalta;
     }
 
-    public void setFechaalta(LocalDate fechaalta) {
+    public void setFechaalta(String fechaalta) {
         this.fechaalta = fechaalta;
     }
 
     public String getNumeroemlpeado() {
-        return numeroemlpeado;
+        return numeroempleado;
     }
 
     public void setNumeroemlpeado(String numeroemlpeado) {
-        this.numeroemlpeado = numeroemlpeado;
+        this.numeroempleado = numeroemlpeado;
     }
 
     public Contrato getC() {

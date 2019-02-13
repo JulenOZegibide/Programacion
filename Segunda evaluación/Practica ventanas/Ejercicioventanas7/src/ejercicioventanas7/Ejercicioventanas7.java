@@ -7,7 +7,9 @@ package ejercicioventanas7;
 
 import UML.*;
 import com.sun.glass.ui.Cursor;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 import ventanas.*;
 
 
@@ -91,5 +93,30 @@ public static void cancelar(){
     valta.setVisible(false);
     vmenu.setVisible(true);
 }
+/*public static void llenarContratos(JComboBox contratos){
+    for
+}  */
+public static void darAlta(String DNI,String NSS,String Nombre,String Apellidos, String Direccion,String Telefono,Character sexo,Character estadocivil,String fechaalta,String numeroemlpeado,Contrato c,Departamento d,Usuario u) {
+
+       
+   oEmpleado=new Empleado();
    
+   oEmpleado.setDNI(DNI);
+   oEmpleado.setNSS(NSS);
+   oEmpleado.setNombre(Nombre);
+   oEmpleado.setApellidos(Apellidos);
+   oEmpleado.setDireccion(Direccion);
+   oEmpleado.setTelefono(Telefono);
+   oEmpleado.setSexo(sexo);
+   oEmpleado.setEstadocivil(estadocivil);
+   oEmpleado.setFechaalta(fechaalta);   
+   oEmpleado.setNumeroemlpeado(numeroempleado);  
+   oEmpleado.setC(c);
+   oEmpleado.setD(d);
+   oEmpleado.setU(u);   
+   
+   aEmpleado.add(oEmpleado);
+     
+}
+
 }
