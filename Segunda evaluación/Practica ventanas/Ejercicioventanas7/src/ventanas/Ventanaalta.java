@@ -292,7 +292,18 @@ public class Ventanaalta extends javax.swing.JFrame {
     }//GEN-LAST:event_tffechaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Ejercicioventanas7.darAlta(tfdni.getText(),tfnss.getText(),tfnombre.getText(),tfdirec.getText(),tftelf.getText(),tffecha.getText());
+                      Character valorSexo;
+               if (rbHombre.isSelected())
+                       valorSexo = 'H';
+               else
+                       valorSexo = 'M';
+
+            Character valorEstadoCivil;
+            if (rbSoltero.isSelected())
+                    valorEstadoCivil = 'S';
+            else
+                    valorEstadoCivil = 'C';
+        Ejercicioventanas7.darAlta(tfdni.getText(),tfnss.getText(), tfnombre.getText(), tfdireccion.getText(), tfTelefono.getText(), valorSexo, valorEstadoCivil, cbContratos.getSelectedIndex(), cbDepartamentos.getSelectedIndex(), fecha);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

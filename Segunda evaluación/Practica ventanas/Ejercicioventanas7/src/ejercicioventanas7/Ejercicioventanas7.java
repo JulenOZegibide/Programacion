@@ -110,7 +110,7 @@ public static void darAlta(String DNI,String NSS,String Nombre,String Apellidos,
    oEmpleado.setSexo(sexo);
    oEmpleado.setEstadocivil(estadocivil);
    oEmpleado.setFechaalta(fechaalta);   
-   oEmpleado.setNumeroemlpeado(numeroempleado);  
+   oEmpleado.setNumeroemlpeado(numeroemlpeado);  
    oEmpleado.setC(c);
    oEmpleado.setD(d);
    oEmpleado.setU(u);   
