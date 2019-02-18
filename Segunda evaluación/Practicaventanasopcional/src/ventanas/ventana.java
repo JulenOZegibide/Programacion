@@ -5,7 +5,10 @@
  */
 package ventanas;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import practicaventanasopcional.Practicaventanasopcional;
+import practicaventanasopcional.*;
 
 /**
  *
@@ -18,6 +21,7 @@ public class ventana extends javax.swing.JFrame {
      */
     public ventana() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -43,6 +47,8 @@ public class ventana extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        rbfem = new javax.swing.JRadioButton();
+        rbmasc = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +91,20 @@ public class ventana extends javax.swing.JFrame {
             }
         });
 
+        rbfem.setText("femenino");
+        rbfem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbfemActionPerformed(evt);
+            }
+        });
+
+        rbmasc.setText("masculino");
+        rbmasc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbmascActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,9 +120,6 @@ public class ventana extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tfnomequipo)
                             .addComponent(tfescudo, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(jButton1))
@@ -125,7 +142,18 @@ public class ventana extends javax.swing.JFrame {
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
                                 .addComponent(tfdorsal, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(50, 50, 50))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(rbmasc)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rbfem)
+                        .addGap(137, 137, 137))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,9 +166,13 @@ public class ventana extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(tfescudo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbfem)
+                    .addComponent(rbmasc))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(tfjugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -159,7 +191,7 @@ public class ventana extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -170,17 +202,60 @@ public class ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_tfjugadorActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try{
+        validardorsal();
         Practicaventanasopcional.grabarJugador(tfjugador.getText(), tfpuesto.getText(), tfdorsal.getText());
+        tfjugador.setText("");
+        tfpuesto.setText(""); 
+        tfdorsal.setText("");
+        }catch(Exception e){
+          javax.swing.JOptionPane.showMessageDialog(null, e.getMessage());  
+        }  
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    public void validardorsal() throws Exception{
+        if(tfjugador.getText().isEmpty()||tfpuesto.getText().isEmpty()||tfdorsal.getText().isEmpty())
+            throw new campojug();
+        
+        Pattern pat=Pattern.compile("[1-32]");
+        Matcher mat=pat.matcher(tfdorsal.getText());
+        if(mat.matches()==false)
+            throw new dorsalmalo();
+    }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Practicaventanasopcional.salir();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Practicaventanasopcional.grabarequipo(tfnomequipo.getText(),tfescudo.getText(),tfjugador.getText(),tfpuesto.getText(),tfdorsal.getText());
+        try{
+            
+            Character genero;
+            if(rbmasc.isSelected())
+                genero='M';
+            else
+                genero='F';
+        validarcampos();    
+        
+        Practicaventanasopcional.grabarequipo(tfnomequipo.getText(),tfescudo.getText(),genero);
+        
+        tfnomequipo.setEditable(false);
+        tfescudo.setEditable(false);
+        
+        }catch(Exception e){
+            javax.swing.JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void rbfemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbfemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbfemActionPerformed
+
+    private void rbmascActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbmascActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbmascActionPerformed
+    public void validarcampos() throws Exception{
+        if(tfnomequipo.getText().isEmpty()||tfescudo.getText().isEmpty())
+            throw new campovacio();
+    }
     /**
      * @param args the command line arguments
      */
@@ -226,6 +301,8 @@ public class ventana extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JRadioButton rbfem;
+    private javax.swing.JRadioButton rbmasc;
     private javax.swing.JTextField tfdorsal;
     private javax.swing.JTextField tfescudo;
     private javax.swing.JTextField tfjugador;

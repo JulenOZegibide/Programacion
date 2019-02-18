@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package practicaventanasopcional.UML;
+package UML;
 
 import java.util.ArrayList;
 
@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Equipo {
     private String Nomequipo;
     private String escudo;
+    private Character genero;
     private ArrayList<jugador>listajugadores;
 
     public String getNomequipo() {
@@ -44,6 +45,15 @@ public class Equipo {
         this.Nomequipo = Nomequipo;
         this.escudo = escudo;
         this.listajugadores = listajugadores;
+        this.genero=genero;
+    }
+
+    public Character getGenero() {
+        return genero;
+    }
+
+    public void setGenero(Character genero) {
+        this.genero = genero;
     }
 
     public Equipo() {
