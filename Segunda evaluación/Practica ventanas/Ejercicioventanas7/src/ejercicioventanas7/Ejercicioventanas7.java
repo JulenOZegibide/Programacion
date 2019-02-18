@@ -6,7 +6,6 @@
 package ejercicioventanas7;
 
 import UML.*;
-import com.sun.glass.ui.Cursor;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
