@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 package practicaventanasopcional;
+import UML.jugador;
+import UML.Equipo;
 import java.util.ArrayList;
 import static practicaventanasopcional.Practicaventanasopcional.aequipos;
-import practicaventanasopcional.UML.*;
 import ventanas.ventana;
 /**
  *
@@ -16,7 +17,7 @@ import ventanas.ventana;
 public class Practicaventanasopcional {
 
     /**
-     * @param args the command line arguments
+ 
      */
     public static ventana v;
     public static ArrayList<Equipo>aequipos;
@@ -24,28 +25,45 @@ public class Practicaventanasopcional {
     public static ArrayList<jugador>ajugadores;
     public static jugador ojugador;
     public static void main(String[] args) {
-       ventana v =new ventana();
-       v.setVisible(true);
+       generardatos(); 
+       ventana ve =new ventana();
+       ve.setVisible(true);
+    }
+    public static void generardatos(){
+        aequipos = new ArrayList();
+        
+        aequipos.add(oequipo);
+        oequipo  = new Equipo();        
+        oequipo.setNomequipo("alaves");
+        oequipo.setEscudo("el del alaves");
+        
+        ajugadores=new ArrayList();
+        
+        ajugadores.add(ojugador);
+        ojugador=new jugador();
+        ojugador.setNombre("calleri");
+        ojugador.setPosicion("delantero");
+        ojugador.setNumero("12");
     }
     public static void salir(){
         System.exit(0);
     }
-    public static void grabarequipo(String Nomequipo,String escudo,String jugador,String puesto,String dorsal){
-        aequipos = new ArrayList<Equipo>();
+    public static void grabarequipo(String Nomequipo,String escudo,Character genero){
         
         oequipo  = new Equipo();
         oequipo.setNomequipo(Nomequipo);
         oequipo.setEscudo(escudo);
+        oequipo.setGenero(genero);
         
         aequipos.add(oequipo);
     } 
         public static void grabarJugador(String jugador,String puesto,String dorsal){
-        ajugadores=new ArrayList<jugador>();
-        
+
         ojugador=new jugador();
         ojugador.setNombre(jugador);
         ojugador.setPosicion(puesto);
         ojugador.setNumero(dorsal);
         
         }
+
 }
