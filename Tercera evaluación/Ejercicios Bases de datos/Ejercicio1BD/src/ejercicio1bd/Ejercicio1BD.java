@@ -20,7 +20,8 @@ public class Ejercicio1BD {
      */
     public static Principal v;
     public static Persona opersona;
-    public static Persona opersonaDAO;
+    private static ConexionBasedeDatos bd;
+    public static PersonaDAO opersonaDAO;
     public static Connection con;
     public static void main(String[] args) {
         ConexionBasedeDatos cbd = new ConexionBasedeDatos();
@@ -30,16 +31,24 @@ public class Ejercicio1BD {
             javax.swing.JOptionPane.showMessageDialog(null,"Problemas con la Base de Datos");
             System.exit(-1);
         }
-        opersonaDAO=new PersonaDAO(con);
+       opersonaDAO = new PersonaDAO(con);
                 
         v=new Principal();
         v.setVisible(true);
     }
     public static void daralta(String nombre, int edad, String profesion, int telefono){
-        opersona = new Persona(nombre,edad,profesion,telefono);
+        opersona= new Persona(nombre,edad,profesion,telefono);
         //insertar
 
-        opersonaDAO.insertarpersona(opersona);
+        opersonaDAO.daralta(opersona);
+    }
+        public static String consultar(String nombre, int edad, String profesion, int telefono)
+    {
+        return opersonaDAO.consultar(nombre,edad,profesion,telefono);
+    }
+    public static void salir(){
+        bd.cerrar();
+        System.exit(0);
     }
 }
 

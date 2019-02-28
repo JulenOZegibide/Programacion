@@ -6,6 +6,7 @@
 package Ventanas;
 
 import ejercicio1bd.Ejercicio1BD;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -157,8 +158,9 @@ public class Personas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        Ejercicio1BD.daralta(tfnombre.getText(),Integer.parseInt(tfedad.getText()),tfprofesion.getText(),Integer.parseInt(tftelefono.getText()));
-
+        //Ejercicio1BD.daralta(tfnombre.getText(),Integer.parseInt(tfedad.getText()),tfprofesion.getText(),Integer.parseInt(tftelefono.getText()));
+      String datos = Ejercicio1BD.consultar(tfnombre.getText(),Integer.parseInt(tfedad.getText()),tfprofesion.getText(),Integer.parseInt(tftelefono.getText()));
+      JOptionPane.showMessageDialog(null, datos);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
