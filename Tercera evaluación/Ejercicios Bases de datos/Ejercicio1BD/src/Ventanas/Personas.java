@@ -6,6 +6,8 @@
 package Ventanas;
 
 import ejercicio1bd.Ejercicio1BD;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,14 +19,13 @@ public class Personas extends javax.swing.JFrame {
     /**
      * Creates new form Personas
      */
+    public int posicion;
     public Personas() {
         initComponents();
         this.setLocationRelativeTo(null);
         // Utilizamos la ventana para dar de alta una persona
         banterior.setVisible(false);
-        bsiguiente.setVisible(false);
-        bsalir.setVisible(true);
-        
+        bsiguiente.setVisible(false);      
     }
 
     public Personas(String nombre, int edad, String profesion, int telefono) {
@@ -182,7 +183,9 @@ public class Personas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void banteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_banteriorActionPerformed
-        // TODO add your handling code here:
+        try {
+            Ejercicio1BD.anterior();
+        } catch (Exception e){}
     }//GEN-LAST:event_banteriorActionPerformed
 
     private void baceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baceptarActionPerformed
@@ -199,7 +202,9 @@ public class Personas extends javax.swing.JFrame {
     }//GEN-LAST:event_baceptarActionPerformed
 
     private void bsiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsiguienteActionPerformed
-      
+        try {
+            Ejercicio1BD.siguiente();
+        } catch (Exception e){}
     }//GEN-LAST:event_bsiguienteActionPerformed
 
     private void bsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsalirActionPerformed

@@ -25,8 +25,8 @@ public class Ejercicio1BD {
     private static ConexionBasedeDatos cbd;
     public static PersonaDAO opersonaDAO;
     public static Connection con;
-    private static ArrayList<Persona> listaPersonas;
-    private static int posicion;
+    public static ArrayList<Persona> listaPersonas;
+    public static int posicion;
     public static void main(String[] args) {
         cbd = new ConexionBasedeDatos();
         con = cbd.conectar();
@@ -76,7 +76,29 @@ public class Ejercicio1BD {
         }
         else
             throw new Exception("No hay personas");
- }        
+ }  
+    public static void siguiente() throws Exception{
+        listaPersonas = opersonaDAO.listaDePersonas();
+        if (listaPersonas.size()>0) 
+        {
+            posicion=posicion+1;
+            vp = new Personas(listaPersonas.get(posicion).getNombre(),listaPersonas.get(posicion).getEdad(),listaPersonas.get(posicion).getProfesion(),listaPersonas.get(posicion).getTelefono());
+            vp.setVisible(true);
+        }
+        else
+            throw new Exception("No hay personas");        
+    }
+    public static void anterior() throws Exception{
+        listaPersonas = opersonaDAO.listaDePersonas();
+        if (listaPersonas.size()>0) 
+        {
+            posicion=posicion-1;
+            vp = new Personas(listaPersonas.get(posicion).getNombre(),listaPersonas.get(posicion).getEdad(),listaPersonas.get(posicion).getProfesion(),listaPersonas.get(posicion).getTelefono());
+            vp.setVisible(true);
+        }
+        else
+            throw new Exception("No hay personas");        
+    }    
     public static void salir(){
         
         cbd.cerrar();
