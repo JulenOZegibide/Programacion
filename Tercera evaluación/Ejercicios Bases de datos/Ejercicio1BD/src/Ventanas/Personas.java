@@ -23,7 +23,7 @@ public class Personas extends javax.swing.JFrame {
         // Utilizamos la ventana para dar de alta una persona
         banterior.setVisible(false);
         bsiguiente.setVisible(false);
-        bsalir.setVisible(false);
+        bsalir.setVisible(true);
         
     }
 
@@ -38,12 +38,12 @@ public class Personas extends javax.swing.JFrame {
         tftelefono.setEditable(false);
         llenar(nombre,edad,profesion,telefono);   
     }
-    public void llenar(String nombre, int edad, String profesion, int telefono)
+    public void llenar(String nombre, Integer edad, String profesion, Integer telefono)
      {
-         tfnombre.setText(nombre);
-         tfedad.setText(edad.toString());
-         tfprofesion.setText(profesion);
-         tftelefono.setText(telefono.toString());
+        tfnombre.setText(nombre);
+        tfedad.setText(edad.toString());
+        tfprofesion.setText(profesion);
+        tftelefono.setText(telefono.toString());
      }    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -84,8 +84,18 @@ public class Personas extends javax.swing.JFrame {
         });
 
         bsalir.setText("Salir");
+        bsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bsalirActionPerformed(evt);
+            }
+        });
 
         bsiguiente.setText(">");
+        bsiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bsiguienteActionPerformed(evt);
+            }
+        });
 
         baceptar.setText("Aceptar");
         baceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -177,7 +187,24 @@ public class Personas extends javax.swing.JFrame {
 
     private void baceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baceptarActionPerformed
       Ejercicio1BD.daralta(tfnombre.getText(),Integer.parseInt(tfedad.getText()),tfprofesion.getText(),Integer.parseInt(tftelefono.getText()));
+      int continuar=JOptionPane.showConfirmDialog(null,"¿Quieres seguir introduciendo personas?");
+      if(continuar==0){
+      tfnombre.setText("");
+      tfedad.setText("");
+      tfprofesion.setText("");
+      tftelefono.setText("");
+      }
+      else
+      Ejercicio1BD.cambio();    
     }//GEN-LAST:event_baceptarActionPerformed
+
+    private void bsiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsiguienteActionPerformed
+      
+    }//GEN-LAST:event_bsiguienteActionPerformed
+
+    private void bsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsalirActionPerformed
+        Ejercicio1BD.salir();
+    }//GEN-LAST:event_bsalirActionPerformed
 
     /**
      * @param args the command line arguments

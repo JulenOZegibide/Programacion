@@ -108,7 +108,8 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tfopcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfopcionActionPerformed
-          switch (Integer.parseInt(tfopcion.getText()))
+        try{  
+        switch (Integer.parseInt(tfopcion.getText()))
             {
               case 1:
                     Ejercicio1BD.alta();
@@ -127,6 +128,9 @@ public class Principal extends javax.swing.JFrame {
                     Ejercicio1BD.salir();
                     break;
               }
+        }catch(Exception e){}
+                
+                
     }//GEN-LAST:event_tfopcionActionPerformed
 
     /**

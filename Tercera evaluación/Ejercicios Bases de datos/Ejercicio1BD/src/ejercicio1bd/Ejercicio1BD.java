@@ -22,14 +22,14 @@ public class Ejercicio1BD {
     public static Principal v;
     public static Personas vp;
     public static Persona opersona;
-    private static ConexionBasedeDatos bd;
+    private static ConexionBasedeDatos cbd;
     public static PersonaDAO opersonaDAO;
     public static Connection con;
     private static ArrayList<Persona> listaPersonas;
     private static int posicion;
     public static void main(String[] args) {
-        ConexionBasedeDatos cbd = new ConexionBasedeDatos();
-        Connection con = cbd.conectar();
+        cbd = new ConexionBasedeDatos();
+        con = cbd.conectar();
         if(con==null)
         {
             javax.swing.JOptionPane.showMessageDialog(null,"Problemas con la Base de Datos");
@@ -49,13 +49,21 @@ public class Ejercicio1BD {
     }    
     public static void daralta(String nombre, int edad, String profesion, int telefono){
         opersona= new Persona(nombre,edad,profesion,telefono);
-        //insertar
 
         opersonaDAO.daralta(opersona);
+        
+        listaPersonas=new ArrayList<Persona>();
+        listaPersonas.add(opersona);
     }
-    public static void buscarPersona(String nombre, int edad, String profesion, int telefono) throws Exception
+    public static void cambio(){
+        vp.setVisible(false);
+        
+        v = new Principal();
+        v.setVisible(true);
+    }
+    public static void buscarPersona(String nombre) throws Exception
     {
-        String opersona = opersonaDAO.consultar(nombre,edad,profesion,telefono);
+        opersona = opersonaDAO.consultar(nombre);
     }
     public static void obtenerDatos() throws Exception
     {
@@ -63,14 +71,15 @@ public class Ejercicio1BD {
         if (listaPersonas.size()>0) 
         {
             posicion = 0;
-            vp = new Personas(listaPersonas.get(0).getNombre(),listaPersonas.get(0).getEdad(),listaPersonas.get(0).getProfesion(),listaPersonas.get(0).getTelefono());
+            vp = new Personas(listaPersonas.get(posicion).getNombre(),listaPersonas.get(posicion).getEdad(),listaPersonas.get(posicion).getProfesion(),listaPersonas.get(posicion).getTelefono());
             vp.setVisible(true);
         }
         else
             throw new Exception("No hay personas");
  }        
     public static void salir(){
-        bd.cerrar();
+        
+        cbd.cerrar();
         System.exit(0);
     }
 }

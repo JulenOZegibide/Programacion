@@ -29,9 +29,9 @@ public class PersonaDAO {
     {
         try
         {
-        Statement sentencia =con.createStatement();
+        //Statement sentencia =con.createStatement();
         
-        String plantilla = "insert into personas values (?,?,?,?);";
+        String plantilla = "INSERT INTO personas VALUES (?,?,?,?);";
         PreparedStatement ps = con.prepareStatement(plantilla);
         ps.setString(1,opersona.getNombre());
         ps.setInt(2,opersona.getEdad());
@@ -49,7 +49,7 @@ public class PersonaDAO {
         }
     
     }
-    public String consultar(String nombre, int edad, String profesion, int telefono)
+    public Persona consultar(String nombre)
     {
     try
     {
@@ -68,7 +68,7 @@ public class PersonaDAO {
      else
        resultado.close();
        ps.close();
- 
+     
        return opersona;
     }
     catch(Exception e)
