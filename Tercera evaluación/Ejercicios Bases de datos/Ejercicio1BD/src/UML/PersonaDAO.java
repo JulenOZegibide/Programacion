@@ -5,28 +5,95 @@
  */
 package UML;
 
+import static ejercicio1bd.Ejercicio1BD.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
  * @author 1gdaw02
  */
 public class PersonaDAO {
-    private connection con;
+    private Connection con;
 
-    public PersonaDAO(connection con) {
+    public PersonaDAO(Connection con) {
         this.con = con;
     }
     
     
     
-    public void insertarpersona(Persona opersona)
+    public void daralta(Persona opersona)
     {
-        try{
-        Statement sentencia =con. createStatement ();
-        sentencia.executeUpdate ("INSERT INTO datosPersonales VALUES (4,’Pepe ’,40,’c/ Cuchilleria ’)");
-    }
-        catch(Exception e){
-            
+        try
+        {
+        Statement sentencia =con.createStatement();
+        
+        String plantilla = "insert into personas values (?,?,?,?);";
+        PreparedStatement ps = con.prepareStatement(plantilla);
+        ps.setString(1,opersona.getNombre());
+        ps.setInt(2,opersona.getEdad());
+        ps.setString(3,opersona.getProfesion());
+        ps.setInt(4,opersona.getTelefono()); 
+        
+        int n = ps.executeUpdate();
+        
+        if (n == 0)
+            System.out.println("Cero filas");
         }
-    }}
+        catch(Exception e)
+        {
+            System.out.println(e.getClass() + e.getMessage());
+        }
+    
+    }
+    public String consultar(String nombre, int edad, String profesion, int telefono)
+    {
+    try
+    {
+     String plantilla = "SELECT * FROM personas WHERE nombre = ?;";
+     PreparedStatement ps = con.prepareStatement(plantilla);
+     ps.setString(1,nombre);
+     ResultSet resultado = ps.executeQuery();
+     if (resultado.next())
+       {
+           Persona opersona= new Persona();
+           opersona.setNombre(resultado.getString("nombre"));
+           opersona.setEdad(Integer.parseInt(resultado.getString("edad")));
+           opersona.setProfesion(resultado.getString("profesion"));
+           opersona.setTelefono(resultado.getInt("telefono"));
+       }
+     else
+       resultado.close();
+       ps.close();
+ 
+       return opersona;
+    }
+    catch(Exception e)
+    {
+        return null;
+    }
+} 
+    public ArrayList<Persona> listaDePersonas() throws Exception
+    {
+        ArrayList<Persona> listaPersonas = new ArrayList();
+
+        Statement consulta = con.createStatement();
+        ResultSet resultado = consulta.executeQuery("SELECT * FROM personas ");
+        while(resultado.next())
+        {
+          Persona opersona= new Persona();
+          opersona.setNombre(resultado.getString("nombre"));
+          opersona.setEdad(Integer.parseInt(resultado.getString("edad")));
+          opersona.setProfesion(resultado.getString("profesion"));
+          opersona.setTelefono(resultado.getInt("telefono"));
+          listaPersonas.add(opersona);
+        }
+        resultado.close();
+        consulta.close();
+   
+        return listaPersonas;
+ }    
+    }

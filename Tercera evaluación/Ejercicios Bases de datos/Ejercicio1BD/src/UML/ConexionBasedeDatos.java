@@ -7,6 +7,8 @@ package UML;
 //importar la clasepara BD
 import java.sql.*;
 public class ConexionBasedeDatos {
+    private Connection con;
+    
     public Connection conectar()
     {
         try{
@@ -22,7 +24,12 @@ public class ConexionBasedeDatos {
            }
         catch( Exception e){
         return null;}
-        
-
-    }   
+    }  
+    public void cerrar()
+    {
+        try{
+        con.close();
+        }
+        catch(Exception e){}
+    }
 }
