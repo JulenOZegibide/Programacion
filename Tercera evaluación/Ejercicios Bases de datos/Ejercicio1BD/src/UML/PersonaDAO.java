@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -64,6 +65,7 @@ public class PersonaDAO {
            opersona.setEdad(Integer.parseInt(resultado.getString("edad")));
            opersona.setProfesion(resultado.getString("profesion"));
            opersona.setTelefono(resultado.getInt("telefono"));
+
        }
      else
        resultado.close();

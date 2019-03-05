@@ -6,6 +6,7 @@
 package UML;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  *
@@ -15,11 +16,11 @@ public class Evento {
     private String nombre;
     private String lugar;
     private LocalDate fecha;
-    private LocalDate fechainicio;
-    private LocalDate fechafin;
+    private LocalTime fechainicio;
+    private LocalTime fechafin;
     private int aforomax;
 
-    public Evento(String nombre, String lugar, LocalDate fecha, LocalDate fechainicio, LocalDate fechafin, int aforomax) {
+    public Evento(String nombre, String lugar, LocalDate fecha, LocalTime fechainicio, LocalTime fechafin, int aforomax) {
         this.nombre = nombre;
         this.lugar = lugar;
         this.fecha = fecha;
@@ -55,19 +56,19 @@ public class Evento {
         this.fecha = fecha;
     }
 
-    public LocalDate getFechainicio() {
+    public LocalTime getFechainicio() {
         return fechainicio;
     }
 
-    public void setFechainicio(LocalDate fechainicio) {
+    public void setFechainicio(LocalTime fechainicio) {
         this.fechainicio = fechainicio;
     }
 
-    public LocalDate getFechafin() {
+    public LocalTime getFechafin() {
         return fechafin;
     }
 
-    public void setFechafin(LocalDate fechafin) {
+    public void setFechafin(LocalTime fechafin) {
         this.fechafin = fechafin;
     }
 
