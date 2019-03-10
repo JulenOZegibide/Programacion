@@ -10,6 +10,7 @@ import Ventanas.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,13 +34,31 @@ public class Ejercicio2BD {
         ve.setVisible(true);
     }   
     public static void daralta(String nombre,String lugar,LocalDate fecha,LocalTime fechaini,LocalTime fechafin,int aforomax){
-        oevento=new Evento();
+        oevento=new Evento(nombre,lugar,fecha,fechaini,fechafin,aforomax);
         oeventoDAO.daralta(oevento);
         
         listaeventos=new ArrayList<Evento>();
         listaeventos.add(oevento);
     }
+    public static void cambio(){
+        ve.setVisible(false);
+        
+        vm=new Menu();
+        vm.setVisible(true);        
+    }
     public static void salir(){
         System.exit(0);
     }    
+
+    public static void buscarEvento(String nombre) {
+        int borrar=JOptionPane.showConfirmDialog(null,"Estas seguro de que quieres borrar este evento");
+                if(borrar==1)
+        oevento=oeventoDAO.borrarevento(nombre);
+    }
+
+    public static void Modificarevento(String nomevento) {
+        
+    }
+
+
 }

@@ -162,6 +162,7 @@ public class VentanaEventos extends javax.swing.JFrame {
 
     private void baceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baceptarActionPerformed
         Ejercicio2BD.daralta(tfnombre.getText(),tflugar.getText(),LocalDate.parse(ftffecha.getText()),LocalTime.parse(ftffechaini.getText()),LocalTime.parse(ftffechafin.getText()),Integer.parseInt(tfaforo.getText()));
+        Ejercicio2BD.cambio();
     }//GEN-LAST:event_baceptarActionPerformed
 
     private void bsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsalirActionPerformed

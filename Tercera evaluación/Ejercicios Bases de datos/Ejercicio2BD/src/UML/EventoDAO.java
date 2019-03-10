@@ -6,6 +6,7 @@
 package UML;
 
 
+import static ejercicio2bd.Ejercicio2BD.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,8 +48,36 @@ public class EventoDAO {
         if (n == 0)
             System.out.println("Cero filas insertadas");
         }
-        catch(Exception e){
-          
+        catch(Exception e){   
       }
+    }    
+
+    public Evento borrarevento(String nombre) {
+    try
+    {
+     String plantilla = "DELETE FROM Eventos WHERE nombre = ?;";
+     PreparedStatement ps = con.prepareStatement(plantilla);
+     ps.setString(1,nombre);
+     ResultSet resultado = ps.executeQuery();
+     if (resultado.next())
+       {
+           Evento opersona= new Evento();
+           opersona.setNombre(resultado.getString("nombre"));
+           opersona.setLugar(resultado.getString("lugar"));
+           opersona.setFecha(conversionDate(resultado.getDate("fecha")));
+           opersona.setFechainicio(conversiontime(resultado.getInt("fechaini")));
+           opersona.setAforomax(resultado.getInt("aforomax"));
+
+       }
+     else
+       resultado.close();
+       ps.close();
+     
+       return oevento;
+    }
+    catch(Exception e)
+    {
+        return null;
+    }
     }
 }
