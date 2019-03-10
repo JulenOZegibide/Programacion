@@ -6,6 +6,8 @@
 package Ventanas;
 
 import ejercicio2bd.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -148,8 +150,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        String nomevento=JOptionPane.showInputDialog("Teclea el nombre de la evento");
-        Ejercicio2BD.Modificarevento(nomevento);  
+        try {
+            Ejercicio2BD.cambiomodificar();
+        } catch (Exception e) {}
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**

@@ -19,6 +19,7 @@ public class Evento {
     private LocalTime fechainicio;
     private LocalTime fechafin;
     private int aforomax;
+    public int getAforomax;
 
     public Evento(String nombre, String lugar, LocalDate fecha, LocalTime fechainicio, LocalTime fechafin, int aforomax) {
         this.nombre = nombre;

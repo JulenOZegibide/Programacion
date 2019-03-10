@@ -55,23 +55,36 @@ public class EventoDAO {
     public Evento borrarevento(String nombre) {
     try
     {
-     String plantilla = "DELETE FROM Eventos WHERE nombre = ?;";
-     PreparedStatement ps = con.prepareStatement(plantilla);
-     ps.setString(1,nombre);
-     ResultSet resultado = ps.executeQuery();
-     if (resultado.next())
-       {
-           Evento opersona= new Evento();
-           opersona.setNombre(resultado.getString("nombre"));
-           opersona.setLugar(resultado.getString("lugar"));
-           opersona.setFecha(conversionDate(resultado.getDate("fecha")));
-           opersona.setFechainicio(conversiontime(resultado.getInt("fechaini")));
-           opersona.setAforomax(resultado.getInt("aforomax"));
-
-       }
-     else
-       resultado.close();
-       ps.close();
+    String plantilla = "DELETE FROM Eventos WHERE nombre = ?;";
+    PreparedStatement ps = con.prepareStatement(plantilla);
+    ps.setString(1,nombre);
+    ps.executeUpdate();
+     
+    ps.close();
+     
+      return oevento;
+    }
+    catch(Exception e)
+    {
+        return null;
+    }
+    }
+    public Evento modificarevento(Evento oevento){
+     try
+    {
+    String plantilla = "UPDATE Eventos SET nombre=?,SET lugar=?,SET fecha=?,SET fechainicio=?,SET fechafin=?,SET aforomaximo=?,";
+    PreparedStatement ps = con.prepareStatement(plantilla);
+    
+    ps.setString(1,oevento.getNombre());
+    ps.setString(2,oevento.getLugar());
+    ps.setDate(3,conversionDate(oevento.getFecha()));
+    ps.setTime(4,conversiontime(oevento.getFechainicio()));
+    ps.setTime(5,conversiontime(oevento.getFechafin()));
+    ps.setInt(6,oevento.getAforomax());
+          
+    ps.executeUpdate();
+     
+    ps.close();
      
        return oevento;
     }
@@ -79,5 +92,29 @@ public class EventoDAO {
     {
         return null;
     }
+    } 
+    public ArrayList<Evento> listadeeventos() throws Exception
+    {
+        ArrayList<Evento> listaPersonas = new ArrayList();
+
+        Statement consulta = con.createStatement();
+        ResultSet resultado = consulta.executeQuery("SELECT * FROM personas ");
+        while(resultado.next())
+        {
+        Evento opersona= new Evento();
+        oevento.setNombre(resultado.getString("nombre"));
+        oevento.setLugar(resultado.getString("lugar"));
+        oevento.setFecha(LocalDate.parse(resultado.getDate("fecha")));
+        oevento.setFechainicio(LocalDate.parse(resultado.getTime("fechainicio")));
+        oevento.setFechafin(LocalDate.parse(resultado.getTime("fechafin")));
+        oevento.setAforomax(Integer.parseInt(resultado.getString("aforomax")));
+          listaPersonas.add(opersona);
+        }
+        resultado.close();
+        consulta.close();
+   
+        return listaPersonas;
+ }        
+        
     }
-}
+

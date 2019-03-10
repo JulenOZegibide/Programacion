@@ -40,12 +40,27 @@ public class Ejercicio2BD {
         listaeventos=new ArrayList<Evento>();
         listaeventos.add(oevento);
     }
+    public static void modificarevento(String nombre,String lugar,LocalDate fecha,LocalTime fechaini,LocalTime fechafin,int aforomax){
+        oevento=new Evento(nombre,lugar,fecha,fechaini,fechafin,aforomax);
+        oeventoDAO.modificarevento(oevento);
+    }
     public static void cambio(){
         ve.setVisible(false);
         
         vm=new Menu();
         vm.setVisible(true);        
     }
+    public static void cambiomodificar()throws Exception{
+        listaeventos = oeventoDAO.listadeeventos();
+        if (listaeventos.size()>0) 
+        {
+            ve = new VentanaEventos(listaeventos.get(0).getNombre(),listaeventos.get(0).getLugar(),listaeventos.get(0).getFecha(),listaeventos.get(0).getFechainicio(),listaeventos.get(0).getFechafin(),listaeventos.get(0).getAforomax);
+            ve.setVisible(true);
+        }
+        else{
+            throw new Exception("No hay personas");     
+        }
+    }   
     public static void salir(){
         System.exit(0);
     }    
@@ -56,9 +71,6 @@ public class Ejercicio2BD {
         oevento=oeventoDAO.borrarevento(nombre);
     }
 
-    public static void Modificarevento(String nomevento) {
-        
-    }
 
 
 }
