@@ -61,18 +61,17 @@ public class EventoDAO {
     ps.executeUpdate();
      
     ps.close();
-     
-      return oevento;
     }
     catch(Exception e)
     {
         return null;
     }
+    return oevento;
     }
     public Evento modificarevento(Evento oevento){
      try
     {
-    String plantilla = "UPDATE Eventos SET nombre=?,SET lugar=?,SET fecha=?,SET fechainicio=?,SET fechafin=?,SET aforomaximo=?,";
+    String plantilla = "UPDATE Eventos SET nombre=?,lugar=?,fecha=?,fechainicio=?,fechafin=?,aforomaximo=?,";
     PreparedStatement ps = con.prepareStatement(plantilla);
     
     ps.setString(1,oevento.getNombre());
@@ -93,27 +92,25 @@ public class EventoDAO {
         return null;
     }
     } 
-    public ArrayList<Evento> listadeeventos() throws Exception
+    public Evento buscarevento(String nombreevento) throws Exception
     {
-        ArrayList<Evento> listaPersonas = new ArrayList();
 
         Statement consulta = con.createStatement();
-        ResultSet resultado = consulta.executeQuery("SELECT * FROM personas ");
-        while(resultado.next())
+        ResultSet resultado = consulta.executeQuery("SELECT * FROM eventos WHERE nombre=" + nombreevento + "\";");
+        if(resultado.next())
         {
-        Evento opersona= new Evento();
+        oevento= new Evento();
         oevento.setNombre(resultado.getString("nombre"));
         oevento.setLugar(resultado.getString("lugar"));
-        oevento.setFecha(LocalDate.parse(resultado.getDate("fecha")));
-        oevento.setFechainicio(LocalDate.parse(resultado.getTime("fechainicio")));
-        oevento.setFechafin(LocalDate.parse(resultado.getTime("fechafin")));
+        oevento.setFecha(resultado.getDate("fecha").toLocalDate());
+        oevento.setFechainicio(resultado.getTime("fechainicio").toLocalTime());
+        oevento.setFechafin(resultado.getTime("fechafin").toLocalTime());
         oevento.setAforomax(Integer.parseInt(resultado.getString("aforomax")));
-          listaPersonas.add(opersona);
         }
         resultado.close();
         consulta.close();
    
-        return listaPersonas;
+        return oevento;
  }        
         
     }
