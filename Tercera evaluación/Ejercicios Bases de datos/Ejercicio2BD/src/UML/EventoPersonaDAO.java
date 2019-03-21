@@ -32,8 +32,8 @@ public class EventoPersonaDAO {
         ps.setString(1,opersona.getDni());
         ps.setString(2,opersona.getNombre());
         ps.setString(3,opersona.getApellidos());
-        ps.setString(4,opersona.getEvento());
-        ps.setString(5,opersona.getEmpresa());
+        ps.setString(4,opersona.getEvento().toString());
+        ps.setString(5,opersona.getEmpresa().toString());
         
         int n = ps.executeUpdate();
         

@@ -7,6 +7,7 @@ package ejercicio2bd;
 
 import UML.*;
 import Ventanas.*;
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -27,9 +28,15 @@ public class Ejercicio2BD {
     public static EventoPersonaDAO oeventopersonaDAO;
     public static ArrayList<Evento>listaeventos;
     public static ArrayList<Persona>listapersonas;
+    public static String listinpersonas;
+    public static Empresa empresa;
+    public static Evento evento;
+    public static Connection con;
     public static void main(String[] args) {
         vm=new Menu();
         vm.setVisible(true);
+        
+        oeventoDAO=new EventoDAO(con);
     }
     public static void cambioAñadir(){
         vm.setVisible(false);
@@ -54,6 +61,12 @@ public class Ejercicio2BD {
         vm=new Menu();
         vm.setVisible(true);        
     }
+    public static void cambiopersona(){
+        vm.setVisible(false);
+        
+        vp=new VentanaPersonas();
+        vp.setVisible(true);        
+    }
     public static void cambiomodificar()throws Exception{
             vm.setVisible(false);
             ve = new VentanaEventos();
@@ -75,13 +88,14 @@ public class Ejercicio2BD {
        }catch(Exception e){}
     }
 
-    public static void cambiopersona() {
-        vm.setVisible(false);
-        vp = new VentanaPersonas();
-        vp.setVisible(true);
-    }
 
-    public static void altapersona(Evento evento,String dni, String nombre, String apellidos, Empresa empresa) {
+    public static void altapersona(String nomevento,String dni, String nombre, String apellidos, String empresas) {
+      empresa =new Empresa();
+      empresa.setNombre(empresas);
+        
+      evento=new Evento();
+      evento.setNombre(nomevento);
+      
       opersona=new Persona(dni,nombre,apellidos,evento,empresa);
       oeventopersonaDAO.daralta(opersona);      
       
@@ -90,11 +104,25 @@ public class Ejercicio2BD {
    }
    public static void listinpersonas(){
        int x;
-       for(x=0;x<listapersonas.size();x++){}
-       String listinpersonas = new Persona(listapersonas.get(0).getDni(),listapersonas.get(0).getNombre(),listapersonas.get(0).getApellidos(),listapersonas.get(0).getEvento(),listapersonas.get(0).getEmpresa()).toString();
+       for(x=0;x<listapersonas.size();x++){
+       listinpersonas = new Persona(listapersonas.get(0).getDni(),listapersonas.get(0).getNombre(),listapersonas.get(0).getApellidos(),listapersonas.get(0).getEvento(),listapersonas.get(0).getEmpresa()).toString();
+       }
        JOptionPane.showMessageDialog(null, listinpersonas);
    } 
+   public static void llenarcbeventos(){
+       int y;
+       listaeventos=new ArrayList<Evento>();
+       for(y=0;y<listaeventos.size();y++){
+           vp.llenarcb(listaeventos.get(y).getNombre());
+       }
+   }
 
+    public static void cambiopersonamenu() {
+        vp.setVisible(false);
+        
+        vm=new Menu();
+        vm.setVisible(true);     
+    }
 
 
 }
