@@ -104,62 +104,44 @@ public class AcontecimientoBD{
         
     }
     
-//     public static void modificar(Acontecimiento ac) throws Exception
-//    {
-//        /* Método que modifica una fila en la tabla de los acontecimientos
-//            a partir de un objeto de tipo acontecimiento.*/
-//        
-//        // Abrir la conexión
-//            GenericoBD.abrirBD();
-//            
-//        // Preparar la sentencia que se quiere ejecutar
-//            plantilla = "update acontecimientos set lugar = ?, fecha = ?,horaInicio = ?, horaFin = ?, aforo = ?  where nombre = ?";
-//            sentenciaPre = GenericoBD.getCon().prepareStatement(plantilla);
-//            sentenciaPre.setString(6,ac.getNombre());
-//            sentenciaPre.setString(1,ac.getLugar());
-//            sentenciaPre.setDate(2, conversionDate(ac.getFecha()));
-//            sentenciaPre.setTime(3, conversionTime(ac.getHoraI()));
-//            sentenciaPre.setTime(4, conversionTime(ac.getHoraF()));
-//            sentenciaPre.setInt(5,ac.getAforo());
-//            
-//            // Ejecutar sentencia
-//            int n = sentenciaPre.executeUpdate();
-//            System.out.println( n + "filas modificadas");
-//      
-//            // Cerrar la conexión
-//            GenericoBD.cerrarBD();
-//    }
+     public static void modificar(Acontecimiento ac) throws Exception
+    {
+            oc=GenericoBD.getConexion();
+            oc.store(acontecimiento);       
+            // Cerrar la conexión
+            GenericoBD.cerrar();
+    }
      
-     // Añadido para el ejercicio completo
-//    public static ArrayList<Acontecimiento> consultarProximosLibres() throws Exception
-//    { 
-//            // opcion dos: Select más compleja
-//        
-//            /* arraylist que contendrá todos los objetos de tipo acontecimiento
-//               cuya fecha sea superior a la de hoy  y queden plazas libres */
-//            ArrayList<Acontecimiento> lista = new ArrayList();
-//            
-//            GenericoBD.abrirBD();
-//            
-//            plantilla = "select * from acontecimientos where fecha > ?";
-//            sentenciaPre = GenericoBD.getCon().prepareStatement(plantilla);
-//            // Conversión a sql.Date de la fecha de hoy
-//            sentenciaPre.setDate(1, conversionDate(LocalDate.now()));
-//            resultado = sentenciaPre.executeQuery();
-//            while (resultado.next())
-//            {  
-//                // ¿ Hay plazas libres? 
-//                if (isAforo(resultado.getString("nombre")))
-//                {
-//                    crearObjeto();               
-//                    // La lista de asistentes no me interesa -- Carga bajo demanda.
-//                    lista.add(acontecimiento);
-//                }
-//            }
-//            resultado.close();
-//            GenericoBD.cerrarBD();
-//            return lista;
-//    }
+
+    public static ArrayList<Acontecimiento> consultarProximosLibres() throws Exception
+    { 
+            // opcion dos: Select más compleja
+        
+            /* arraylist que contendrá todos los objetos de tipo acontecimiento
+               cuya fecha sea superior a la de hoy  y queden plazas libres */
+            ArrayList<Acontecimiento> lista = new ArrayList();
+            
+            GenericoBD.abrirBD();
+            
+            plantilla = "select * from acontecimientos where fecha > ?";
+            sentenciaPre = GenericoBD.getCon().prepareStatement(plantilla);
+            // Conversión a sql.Date de la fecha de hoy
+            sentenciaPre.setDate(1, conversionDate(LocalDate.now()));
+            resultado = sentenciaPre.executeQuery();
+            while (resultado.next())
+            {  
+                // ¿ Hay plazas libres? 
+                if (isAforo(resultado.getString("nombre")))
+                {
+                    crearObjeto();               
+                    // La lista de asistentes no me interesa -- Carga bajo demanda.
+                    lista.add(acontecimiento);
+                }
+            }
+            resultado.close();
+            GenericoBD.cerrarBD();
+            return lista;
+    }
     
     public static boolean isAforo(String nombre) throws Exception{
         // Controlador de base de datos ??????

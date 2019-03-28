@@ -88,18 +88,18 @@ public class Controlador {
        ve.setVisible(true);
    }
     
-//   public static void modificarAcontecimientoParteDos(String nombre, String lugar, LocalDate fecha, LocalTime horaI, LocalTime horaF, int nro) throws Exception
-//   {
-//       // actualizamos objeto en memoria
-//       acontecimiento.setLugar(lugar);
-//       acontecimiento.setFecha(fecha);
-//       acontecimiento.setHoraI(horaI);
-//       acontecimiento.setHoraF(horaF);
-//       acontecimiento.setAforo(nro);
-//       AcontecimientoBD.modificar(acontecimiento);
-//   }
-//   
-//   // Añadido al completo
+   public static void modificarAcontecimientoParteDos(String nombre, String lugar, LocalDate fecha, LocalTime horaI, LocalTime horaF, int nro) throws Exception
+   {
+       // actualizamos objeto en memoria
+       acontecimiento.setLugar(lugar);
+       acontecimiento.setFecha(fecha);
+       acontecimiento.setHoraI(horaI);
+       acontecimiento.setHoraF(horaF);
+       acontecimiento.setAforo(nro);
+       AcontecimientoBD.modificar(acontecimiento);
+   }
+   
+   // Añadido al completo
 //   public static boolean visualizarVentanaInscripcion() throws Exception{
 //        // Pido ya a la base de datos información sobre los proximos acontecimientos con plazas libres.
 //        listaAcontecimientos = AcontecimientoBD.consultarProximosLibres();
