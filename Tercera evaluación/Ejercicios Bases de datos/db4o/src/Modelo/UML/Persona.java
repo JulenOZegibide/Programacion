@@ -62,11 +62,12 @@ public class Persona {
     public Persona(){
         
     }
-    public Persona(String dni, String nombre, String apellidos, String tel) {
+    public Persona(String dni, String nombre, String apellidos, String tel,Empresa e) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.telefono = tel;
+        this.e = e;
     }
     
     public void setEvento(Acontecimiento a){

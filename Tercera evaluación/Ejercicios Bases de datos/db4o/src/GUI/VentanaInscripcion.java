@@ -2,6 +2,8 @@ package GUI;
 
 import Excepciones.CampoVacio;
 import Excepciones.DniNoValido;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import t9p1e2.Controlador;
@@ -13,7 +15,7 @@ public class VentanaInscripcion extends javax.swing.JFrame {
     
     public VentanaInscripcion(){
         initComponents();
-        llenarCombo();
+        //llenarCombo();
         setLocationRelativeTo(null);
     }
     
@@ -345,11 +347,12 @@ public class VentanaInscripcion extends javax.swing.JFrame {
             // Persona nueva. Tras las validaciones hay que insertar en la bd
            if (datosPersonaCorrectos() && datosEmpresaCorrectos())
            {
-               Controlador.altaPersonaEmpresa(tfDni.getText(),tfNombre.getText(),tfApellidos.getText(),ftfTelefono.getText(),ftfNif.getText(),tfNombreEmpresa.getText(),tfRazonSocial.getText(),ftfCnae.getText());
+               String nomac = cbNombreAcontecimiento.getSelectedItem().toString();
+               Controlador.altaPersonaEmpresa(nomac,LocalDate.parse(dpFecha.getText()),LocalTime.parse(tpHora.getText()),tfDni.getText(),tfNombre.getText(),tfApellidos.getText(),ftfTelefono.getText(),ftfNif.getText(),tfNombreEmpresa.getText(),tfRazonSocial.getText(),ftfCnae.getText());
            }
        }
        // La persona ya existe. Solo hay que inscribirla.
-       Controlador.altaAsistente();
+       //Controlador.altaAsistente();
        JOptionPane.showMessageDialog(this,"Enhorabuena, ya estás inscrito");
       }
       catch(Exception e){

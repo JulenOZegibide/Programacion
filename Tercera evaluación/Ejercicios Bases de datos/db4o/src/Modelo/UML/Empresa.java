@@ -5,10 +5,17 @@ public class Empresa {
     private String nif;
     private String nombre;
     private String razonSocial;
-    private Integer cnae;
+    private String cnae;
     
     // No hago la relación bidireccional
     // private ArrayList<Persona> listaTrabajadores;
+
+    public Empresa(String nif, String nombre, String razonSocial, String cnae) {
+        this.nif = nif;
+        this.nombre = nombre;
+        this.razonSocial = razonSocial;
+        this.cnae = cnae;
+    }
 
     public String getNif() {
         return nif;
@@ -26,16 +33,13 @@ public class Empresa {
         this.nombre = nombre;
     }
 
-    public Integer getCnae() {
+    public String getCnae() {
         return cnae;
     }
 
-    public void setCnae(Integer cnae) {
+    public void setCnae(String cnae) {
         this.cnae = cnae;
-    }
-    
-    
-
+    } 
     public Empresa() {
     }
 

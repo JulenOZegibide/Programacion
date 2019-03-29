@@ -13,6 +13,12 @@ public class Acontecimiento {
     private LocalTime horaF;
     private Integer aforo;
 
+    public Acontecimiento(String nombre, LocalDate fecha, LocalTime horaI) {
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.horaI = horaI;
+    }
+
     public Acontecimiento() {
     }
 

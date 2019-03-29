@@ -204,7 +204,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void mSalirListadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mSalirListadoActionPerformed
        try{
-            javax.swing.JOptionPane.showMessageDialog(this,Controlador.listado());
+            //javax.swing.JOptionPane.showMessageDialog(this,Controlador.listado());
             Controlador.terminar();
        }
        catch(Exception e)
@@ -289,7 +289,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         {
             String nombre = JOptionPane.showInputDialog("Indica el nombre del evento");
             // validar
-            JOptionPane.showMessageDialog(this,Controlador.getAsistentes(nombre));
+            //JOptionPane.showMessageDialog(this,Controlador.getAsistentes(nombre));
         }
         catch(Exception e)
         {

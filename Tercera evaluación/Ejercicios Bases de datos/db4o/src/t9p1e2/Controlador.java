@@ -100,18 +100,18 @@ public class Controlador {
    }
    
    // Añadido al completo
-//   public static boolean visualizarVentanaInscripcion() throws Exception{
-//        // Pido ya a la base de datos información sobre los proximos acontecimientos con plazas libres.
-//        listaAcontecimientos = AcontecimientoBD.consultarProximosLibres();
-//        
-//        if (listaAcontecimientos.isEmpty())
-//            return false;
-//        
-//        // Dejo por debajo la principal
-//         vi = new VentanaInscripcion();
-//         vi.setVisible(true);
-//         return true;
-//    }
+   public static boolean visualizarVentanaInscripcion() throws Exception{
+        // Pido ya a la base de datos información sobre los proximos acontecimientos con plazas libres.
+        //listaAcontecimientos = AcontecimientoBD.consultarProximosLibres();
+        
+        if (listaAcontecimientos.isEmpty())
+            return false;
+        
+        // Dejo por debajo la principal
+         vi = new VentanaInscripcion();
+         vi.setVisible(true);
+         return true;
+    }
    
    public static int getNumeroAcontecimientosDisponibles()
     {
@@ -171,45 +171,36 @@ public class Controlador {
        return p.getE().getRazonSocial();
    }
    
-   public static void altaAsistente() throws Exception{
-       // Relaciones
-       acontecimiento.setAsistente(p);
-       p.setEvento(acontecimiento);
-       
-       // A la base de datos
-       AsistentesBD.alta(acontecimiento,p);
-       
-   }
+//   public static void altaAsistente() throws Exception{
+//       // Relaciones
+//       acontecimiento.setAsistente(p);
+//       p.setEvento(acontecimiento);
+//       
+//       // A la base de datos
+//       AsistentesBD.alta(acontecimiento,p);
+//       
+//   }
    
-   public static void altaPersonaEmpresa(String d,String n,String ap,String tel,String nif,String nEmp,String rs,String cnae) throws Exception{
-     // Estructura de objetos y relaciones
-       p = new Persona(d,n,ap,tel);
-       
-       // No se si la empresa es nueva
-       e = new Empresa();
-       e.setNif(nif);
-       e.setNombre(nEmp);
-       e.setRazonSocial(rs);
-       e.setCnae(Integer.parseInt(cnae));
-       
-       p.setE(e);
+   public static void altaPersonaEmpresa(String nom,LocalDate fecha,LocalTime hora,String d,String n,String ap,String tel,String nif,String nEmp,String rs,String cnae) throws Exception{
+
+       acontecimiento = new Acontecimiento(nom,fecha,hora);
+       acontecimiento= AcontecimientoBD.consultar(acontecimiento);
               
-       acontecimiento.setAsistente(p);
-       p.setEvento(acontecimiento);
-       
-    // Vamos a la base de datos
-       EmpresaBD.alta(e);
+       e = new Empresa(nif,nEmp,rs,cnae);
+       e = PersonaBD.consultarempresa(e);
+       p = new Persona(acontecimiento,d,n,ap,tel,e);
+
        PersonaBD.alta(p);
    }
    
-   public static String getAsistentes(String nombre) throws Exception
-   {
-       ArrayList<Persona> lista = PersonaBD.getAsistentes(nombre);
-       String datos="";
-       for(Persona obj:lista)
-       {
-           datos += obj.toString() + "\n";
-       }
-       return datos;
-   }
+//   public static String getAsistentes(String nombre) throws Exception
+//   {
+//       ArrayList<Persona> lista = PersonaBD.getAsistentes(nombre);
+//       String datos="";
+//       for(Persona obj:lista)
+//       {
+//           datos += obj.toString() + "\n";
+//       }
+//       return datos;
+//   }
 }

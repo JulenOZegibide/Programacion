@@ -56,7 +56,7 @@ public class AcontecimientoBD{
 //        // Método que genera un String con los datos de todos los acontemientos
 //        GenericoBD.abrirBD();
 //            
-//        sentencia=GenericoBD.getCon().createStatement();
+//        sentencia=GenericoBD.getConexion().createStatement();
 //        resultado = sentencia.executeQuery("Select * from acontecimientos");
 //
 //        String mensaje="";
@@ -67,21 +67,21 @@ public class AcontecimientoBD{
 //        }
 //        resultado.close();
 //        GenericoBD.cerrarBD();
-//        return mensaje;
+//          return mensaje;
 //    }
     
-    public static void crearObjeto() throws Exception
-    {
-        /* creamos y llenamos un objeto de tipo acontecimiento a partir de una
-        fila de la tabla acontecimientos */
-        acontecimiento = new Acontecimiento();
-        acontecimiento.setNombre(resultado.getString("nombre"));
-        acontecimiento.setLugar(resultado.getString("lugar"));
-        acontecimiento.setFecha(resultado.getDate("fecha").toLocalDate());             
-        acontecimiento.setHoraI(resultado.getTime("horaInicio").toLocalTime());      
-        acontecimiento.setHoraF(resultado.getTime("horaFin").toLocalTime());
-        acontecimiento.setAforo(resultado.getInt("aforo"));
-    }
+//    public static void crearObjeto() throws Exception
+//    {
+//        /* creamos y llenamos un objeto de tipo acontecimiento a partir de una
+//        fila de la tabla acontecimientos */
+//        acontecimiento = new Acontecimiento();
+//        acontecimiento.setNombre(resultado.getString("nombre"));
+//        acontecimiento.setLugar(resultado.getString("lugar"));
+//        acontecimiento.setFecha(resultado.getDate("fecha").toLocalDate());             
+//        acontecimiento.setHoraI(resultado.getTime("horaInicio").toLocalTime());      
+//        acontecimiento.setHoraF(resultado.getTime("horaFin").toLocalTime());
+//        acontecimiento.setAforo(resultado.getInt("aforo"));
+//    }
     
     public static void borrar(Acontecimiento acontecimiento) throws Exception
     {
@@ -113,42 +113,42 @@ public class AcontecimientoBD{
     }
      
 
-    public static ArrayList<Acontecimiento> consultarProximosLibres() throws Exception
-    { 
-            // opcion dos: Select más compleja
-        
-            /* arraylist que contendrá todos los objetos de tipo acontecimiento
-               cuya fecha sea superior a la de hoy  y queden plazas libres */
-            ArrayList<Acontecimiento> lista = new ArrayList();
-            
-            GenericoBD.abrirBD();
-            
-            plantilla = "select * from acontecimientos where fecha > ?";
-            sentenciaPre = GenericoBD.getCon().prepareStatement(plantilla);
-            // Conversión a sql.Date de la fecha de hoy
-            sentenciaPre.setDate(1, conversionDate(LocalDate.now()));
-            resultado = sentenciaPre.executeQuery();
-            while (resultado.next())
-            {  
-                // ¿ Hay plazas libres? 
-                if (isAforo(resultado.getString("nombre")))
-                {
-                    crearObjeto();               
-                    // La lista de asistentes no me interesa -- Carga bajo demanda.
-                    lista.add(acontecimiento);
-                }
-            }
-            resultado.close();
-            GenericoBD.cerrarBD();
-            return lista;
-    }
-    
-    public static boolean isAforo(String nombre) throws Exception{
-        // Controlador de base de datos ??????
-        if (AsistentesBD.getNumeroAsistentes(nombre)< resultado.getInt("aforo"))
-            return true;
-        return false;
-        
-        // return AsistentesBD.getNumeroAsistentes(nombre)< resultado.getInt("aforo");
-    }
+//    public static ArrayList<Acontecimiento> consultarProximosLibres() throws Exception
+//    { 
+//            // opcion dos: Select más compleja
+//        
+//            /* arraylist que contendrá todos los objetos de tipo acontecimiento
+//               cuya fecha sea superior a la de hoy  y queden plazas libres */
+//            ArrayList<Acontecimiento> lista = new ArrayList();
+//            
+//            GenericoBD.abrirBD();
+//            
+//            plantilla = "select * from acontecimientos where fecha > ?";
+//            sentenciaPre = GenericoBD.getCon().prepareStatement(plantilla);
+//            // Conversión a sql.Date de la fecha de hoy
+//            sentenciaPre.setDate(1, conversionDate(LocalDate.now()));
+//            resultado = sentenciaPre.executeQuery();
+//            while (resultado.next())
+//            {  
+//                // ¿ Hay plazas libres? 
+//                if (isAforo(resultado.getString("nombre")))
+//                {
+//                    crearObjeto();               
+//                    // La lista de asistentes no me interesa -- Carga bajo demanda.
+//                    lista.add(acontecimiento);
+//                }
+//            }
+//            resultado.close();
+//            GenericoBD.cerrarBD();
+//            return lista;
+//    }
+//    
+//    public static boolean isAforo(String nombre) throws Exception{
+//        // Controlador de base de datos ??????
+//        if (AsistentesBD.getNumeroAsistentes(nombre)< resultado.getInt("aforo"))
+//            return true;
+//        return false;
+//        
+//        // return AsistentesBD.getNumeroAsistentes(nombre)< resultado.getInt("aforo");
+//    }
 }
