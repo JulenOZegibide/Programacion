@@ -187,7 +187,9 @@ public class Controlador {
        acontecimiento= AcontecimientoBD.consultar(acontecimiento);
               
        e = new Empresa(nif,nEmp,rs,cnae);
-       e = PersonaBD.consultarempresa(e);
+       EmpresaBD.alta(e);
+       e = EmpresaBD.consultarempresa(e);
+       
        p = new Persona(acontecimiento,d,n,ap,tel,e);
 
        PersonaBD.alta(p);
