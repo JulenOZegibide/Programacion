@@ -40,8 +40,20 @@ public class PersonaBD {
         
         GenericoBD.cerrar();
     }
-
-    
+    public static Persona consultar(Persona p) throws Exception{
+         
+        GenericoBD.abrirConexion();
+            
+        oc=GenericoBD.getConexion();
+        ObjectSet conjunto = oc.queryByExample(p);
+        if(conjunto.hasNext())
+        {
+            p = (Persona) conjunto.next();
+        }
+        else
+            return null;
+        return p;
+    }
 //    public static ArrayList<Persona> getAsistentes(String nombreAcontecimiento)throws Exception
 //    {
 //        ArrayList<Persona> lista = new ArrayList();

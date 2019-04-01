@@ -8,6 +8,7 @@ import Modelo.UML.Persona;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 
 
@@ -19,6 +20,8 @@ public class Controlador {
     
     // Lista de acontecimientos que admiten personas.
     private static ArrayList<Acontecimiento> listaAcontecimientos;
+    private static ArrayList<Persona> listaTrabajadores;
+    private static ArrayList<Persona> asistentes;
     
     private static VentanaPrincipal vp;
     private static VentanaAcontecimientos ve;
@@ -104,8 +107,6 @@ public class Controlador {
         // Pido ya a la base de datos información sobre los proximos acontecimientos con plazas libres.
         //listaAcontecimientos = AcontecimientoBD.consultarProximosLibres();
         
-        if (listaAcontecimientos.isEmpty())
-            return false;
         
         // Dejo por debajo la principal
          vi = new VentanaInscripcion();
@@ -187,12 +188,32 @@ public class Controlador {
        acontecimiento= AcontecimientoBD.consultar(acontecimiento);
               
        e = new Empresa(nif,nEmp,rs,cnae);
-       EmpresaBD.alta(e);
-       e = EmpresaBD.consultarempresa(e);
        
-       p = new Persona(acontecimiento,d,n,ap,tel,e);
-
-       PersonaBD.alta(p);
+       e = EmpresaBD.consultarempresa(e);
+       if(e==null)
+           EmpresaBD.alta(new Empresa(nif,nEmp,rs,cnae));
+       
+       p = new Persona(d);
+       p = PersonaBD.consultar(p);
+       if(p==null){
+           PersonaBD.alta(new Persona(acontecimiento,d,n,ap,tel,e));
+           
+           acontecimiento.setP(p);
+           asistentes.add(p);
+           
+           listaTrabajadores.add(p);
+           e.setP(p);
+       }
+       else{
+           p.setAc(acontecimiento);
+           PersonaBD.alta(p);
+           
+           acontecimiento.setP(p);
+           asistentes.add(p);
+           
+           listaTrabajadores.add(p);
+           e.setP(p);
+       }
    }
    
 //   public static String getAsistentes(String nombre) throws Exception

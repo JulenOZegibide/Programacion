@@ -14,7 +14,16 @@ public class Persona {
     
     // Una persona puede asistir a muchos acontecimientos
     private ArrayList<Acontecimiento> listaEventos;
+    private Acontecimiento ac;
 
+    public Acontecimiento getAc() {
+        return ac;
+    }
+
+    public void setAc(Acontecimiento ac) {
+        this.ac = ac;
+    }
+    
     public String getDni() {
         return dni;
     }
@@ -62,6 +71,11 @@ public class Persona {
     public Persona(){
         
     }
+
+    public Persona(String dni) {
+        this.dni = dni;
+    }
+    
     public Persona(String dni, String nombre, String apellidos, String tel,Empresa e) {
         this.dni = dni;
         this.nombre = nombre;
@@ -69,7 +83,14 @@ public class Persona {
         this.telefono = tel;
         this.e = e;
     }
-    
+    public Persona(Acontecimiento ac,String dni, String nombre, String apellidos, String tel,Empresa e) {
+        this.ac = ac;
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.telefono = tel;
+        this.e = e;
+    }    
     public void setEvento(Acontecimiento a){
         if (listaEventos == null)
             listaEventos = new ArrayList();

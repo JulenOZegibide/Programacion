@@ -12,11 +12,25 @@ public class Acontecimiento {
     private LocalTime horaI;
     private LocalTime horaF;
     private Integer aforo;
+    
+    private ArrayList<Persona>asistentes;
+    private Persona p;
 
     public Acontecimiento(String nombre, LocalDate fecha, LocalTime horaI) {
         this.nombre = nombre;
         this.fecha = fecha;
         this.horaI = horaI;
+    }
+
+    public Acontecimiento(String nombre, String lugar, LocalDate fecha, LocalTime horaI, LocalTime horaF, Integer aforo, Persona p, ArrayList<Persona> asistentes) {
+        this.nombre = nombre;
+        this.lugar = lugar;
+        this.fecha = fecha;
+        this.horaI = horaI;
+        this.horaF = horaF;
+        this.aforo = aforo;
+        this.p = p;
+        this.asistentes = asistentes;
     }
 
     public Acontecimiento() {
@@ -33,6 +47,22 @@ public class Acontecimiento {
 
     public Acontecimiento(String nombre) {
         this.nombre = nombre;
+    }
+
+    public ArrayList<Persona> getAsistentes() {
+        return asistentes;
+    }
+
+    public void setAsistentes(ArrayList<Persona> asistentes) {
+        this.asistentes = asistentes;
+    }
+
+    public Persona getP() {
+        return p;
+    }
+
+    public void setP(Persona p) {
+        this.p = p;
     }
 
     

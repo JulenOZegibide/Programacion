@@ -1,5 +1,7 @@
 package Modelo.UML;
 
+import java.util.ArrayList;
+
 public class Empresa {
     
     private String nif;
@@ -8,7 +10,24 @@ public class Empresa {
     private String cnae;
     
     // No hago la relación bidireccional
-    // private ArrayList<Persona> listaTrabajadores;
+    private ArrayList<Persona> listaTrabajadores;
+    private Persona p;
+
+    public ArrayList<Persona> getListaTrabajadores() {
+        return listaTrabajadores;
+    }
+
+    public void setListaTrabajadores(ArrayList<Persona> listaTrabajadores) {
+        this.listaTrabajadores = listaTrabajadores;
+    }
+
+    public Persona getP() {
+        return p;
+    }
+
+    public void setP(Persona p) {
+        this.p = p;
+    }
 
     public Empresa(String nif, String nombre, String razonSocial, String cnae) {
         this.nif = nif;
@@ -49,6 +68,15 @@ public class Empresa {
 
     public void setRazonSocial(String razonSocial) {
         this.razonSocial = razonSocial;
+    }
+
+    public Empresa(String nif, String nombre, String razonSocial, String cnae, ArrayList<Persona> listaTrabajadores, Persona p) {
+        this.nif = nif;
+        this.nombre = nombre;
+        this.razonSocial = razonSocial;
+        this.cnae = cnae;
+        this.listaTrabajadores = listaTrabajadores;
+        this.p = p;
     }
 
   
