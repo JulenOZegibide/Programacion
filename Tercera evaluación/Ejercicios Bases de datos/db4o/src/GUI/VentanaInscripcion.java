@@ -15,7 +15,7 @@ public class VentanaInscripcion extends javax.swing.JFrame {
     
     public VentanaInscripcion(){
         initComponents();
-        //llenarCombo();
+        llenarCombo();
         setLocationRelativeTo(null);
     }
     
