@@ -23,6 +23,14 @@ public class Cliente {
     public Cliente() {
     }
 
+    public Cliente(String dni, String nombre, String apellidos, String direccion, String telefono) {
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.direccion = direccion;
+        this.telefono = telefono;
+    }
+
     public Cliente(String dni, String nombre, String apellidos, String direccion, String telefono, Abogado abogado, ArrayList<CasoJudicial> casos) {
         this.dni = dni;
         this.nombre = nombre;
