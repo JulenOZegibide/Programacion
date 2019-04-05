@@ -7,6 +7,7 @@ package BD;
 
 import UML.Cliente;
 import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.time.LocalDate;
@@ -19,9 +20,9 @@ import java.time.LocalTime;
  */
 public class ClienteDAO {
 
-    private Connection con;
+    private static Connection con;
     private static ObjectContainer oc;
-    
+
     public ClienteDAO(Connection con) {
         this.con = con;
     }
@@ -31,7 +32,7 @@ public class ClienteDAO {
     public static java.sql.Time conversiontime(LocalTime hora){
         return java.sql.Time.valueOf(hora);
     }
-    public void daralta(Cliente c) {
+    public static Cliente daralta(Cliente c) {
     try{  
         String plantilla="INSERT INTO clientes VALUES (?,?,?,?,?,?);";
         PreparedStatement ps=con.prepareStatement(plantilla);
@@ -50,8 +51,9 @@ public class ClienteDAO {
       }
     
         oc.store(c);
+        return null;
     }    
-    public void modificarcliente(Cliente c){
+    public Cliente modificarcliente(Cliente c){
         try
     {
     String plantilla = "UPDATE Eventos SET dni=?,nombre=?,apellidos=?,direccion=?,telefono=?";
@@ -74,4 +76,21 @@ public class ClienteDAO {
         return null;
     }
     } 
+    public static Cliente consultar(Cliente c) {
+        oc=GenericoBD_db4o.getConexion();
+        ObjectSet resultado = oc.queryByExample(c);
+        if (resultado.hasNext())
+            return (Cliente) resultado.next();
+        else
+            return null;        
+    }
+
+    public static void borrar(Cliente c) {
+        
+        
+        
+        
+        oc=GenericoBD_db4o.getConexion();
+        oc.delete(c);
+    }    
 }

@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import t9p2e1.db40.y.bdrelacional.controlador;
 
@@ -196,12 +198,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         String nombre = JOptionPane.showInputDialog(null, "Introduce el nombre del cliente que quieres dar de baja");
-        controlador.modificacioncliente(nombre);
+        try {
+            controlador.modificacionclienteparte1(nombre);
+        } catch (Exception e) {}
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

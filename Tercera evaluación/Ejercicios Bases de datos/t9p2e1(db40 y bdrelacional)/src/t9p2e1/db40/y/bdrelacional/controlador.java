@@ -91,10 +91,34 @@ public class controlador {
     }
 
     public static void bajacliente(String nombre) {
-        c = new Cliente(nombre);
+       c = new Cliente(nombre);
+
+       c= ClienteDAO.consultar(c);
+       if (c != null)
+            if (vc.mostrar(c.toString()) == true)
+                 ClienteDAO.borrar(c);
+            else
+                System.out.println("no borro");
+       else
+            System.out.println("Problemas");
     }
 
-    public static void modificacioncliente(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public static void modificacionclienteparte1(String nombre) throws Exception
+   {
+       // Primero consultamos y mostramos sus datos
+       c = ClienteDAO.consultar(new Cliente(nombre));
+       vc = new VentanaClientes(c);
+       vc.setVisible(true);
+   }
+    
+   public static void modificacionclienteparte2(String nombre, String lugar, LocalDate fecha, LocalTime horaI, LocalTime horaF, int nro) throws Exception
+   {
+       // actualizamos objeto en memoria
+       acontecimiento.setLugar(lugar);
+       acontecimiento.setFecha(fecha);
+       acontecimiento.setHoraI(horaI);
+       acontecimiento.setHoraF(horaF);
+       acontecimiento.setAforo(nro);
+       AcontecimientoBD.modificar(acontecimiento);
+   }
 }

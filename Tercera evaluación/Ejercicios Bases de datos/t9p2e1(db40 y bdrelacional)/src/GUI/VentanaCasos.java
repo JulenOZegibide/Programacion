@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import java.time.LocalDate;
 import t9p2e1.db40.y.bdrelacional.controlador;
 
 /**
@@ -124,7 +125,7 @@ public class VentanaCasos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        controlador.altacasos(dpfechaini.getText(),dpfechafin.getText(),cbestado.getSelectedItem());
+        controlador.altacasos(LocalDate.parse(dpfechaini.getText()),LocalDate.parse(dpfechafin.getText()),cbestado.getSelectedItem().toString());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

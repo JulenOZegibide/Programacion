@@ -23,6 +23,10 @@ public class Cliente {
     public Cliente() {
     }
 
+    public Cliente(String nombre) {
+        this.nombre = nombre;
+    }
+
     public Cliente(String dni, String nombre, String apellidos, String direccion, String telefono) {
         this.dni = dni;
         this.nombre = nombre;
