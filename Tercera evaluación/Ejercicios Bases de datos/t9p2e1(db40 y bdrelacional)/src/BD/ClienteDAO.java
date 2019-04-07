@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -22,6 +23,7 @@ public class ClienteDAO {
 
     private static Connection con;
     private static ObjectContainer oc;
+    public static Cliente c;
 
     public ClienteDAO(Connection con) {
         this.con = con;
@@ -56,7 +58,7 @@ public class ClienteDAO {
     public Cliente modificarcliente(Cliente c){
         try
     {
-    String plantilla = "UPDATE Eventos SET dni=?,nombre=?,apellidos=?,direccion=?,telefono=?";
+    String plantilla = "UPDATE Clientes SET dni=?,nombre=?,apellidos=?,direccion=?,telefono=?";
     PreparedStatement ps = con.prepareStatement(plantilla);
     
     ps.setString(1,c.getDni());
@@ -68,9 +70,12 @@ public class ClienteDAO {
     ps.executeUpdate();
      
     ps.close();
-     
+    
+    oc.store(c);  
        return c;
+
     }
+        
     catch(Exception e)
     {
         return null;
@@ -86,9 +91,20 @@ public class ClienteDAO {
     }
 
     public static void borrar(Cliente c) {
-        
-        
-        
+        try
+        {
+        String plantilla = "DELETE FROM Clientes WHERE nombre = ?;";
+        PreparedStatement ps = con.prepareStatement(plantilla);
+        ps.setString(1,c.getNombre());
+        ps.executeUpdate();
+
+        ps.close();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Error con el borrado");
+        }       
+
         
         oc=GenericoBD_db4o.getConexion();
         oc.delete(c);

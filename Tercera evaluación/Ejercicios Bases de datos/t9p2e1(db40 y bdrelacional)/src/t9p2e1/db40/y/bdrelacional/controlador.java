@@ -98,7 +98,7 @@ public class controlador {
             if (vc.mostrar(c.toString()) == true)
                  ClienteDAO.borrar(c);
             else
-                System.out.println("no borro");
+                System.out.println("No se ha podido borrar");
        else
             System.out.println("Problemas");
     }
@@ -111,14 +111,14 @@ public class controlador {
        vc.setVisible(true);
    }
     
-   public static void modificacionclienteparte2(String nombre, String lugar, LocalDate fecha, LocalTime horaI, LocalTime horaF, int nro) throws Exception
+   public static void modificacionclienteparte2(String dni,String nombre,String apellidos,String direccion,String telefono) throws Exception
    {
        // actualizamos objeto en memoria
-       acontecimiento.setLugar(lugar);
-       acontecimiento.setFecha(fecha);
-       acontecimiento.setHoraI(horaI);
-       acontecimiento.setHoraF(horaF);
-       acontecimiento.setAforo(nro);
-       AcontecimientoBD.modificar(acontecimiento);
+       c.setDni(dni);
+       c.setNombre(nombre);
+       c.setApellidos(apellidos);
+       c.setDireccion(direccion);
+       c.setTelefono(telefono);
+       c.modificar(c);
    }
 }

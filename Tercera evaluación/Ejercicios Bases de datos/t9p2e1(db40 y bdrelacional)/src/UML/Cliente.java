@@ -100,4 +100,8 @@ public class Cliente {
     public void setCasos(ArrayList<CasoJudicial> casos) {
         this.casos = casos;
     }
+
+    public void modificar(Cliente c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
