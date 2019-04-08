@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import UML.Cliente;
+import javax.swing.JOptionPane;
 import t9p2e1.db40.y.bdrelacional.controlador;
 
 /**
@@ -13,14 +15,23 @@ import t9p2e1.db40.y.bdrelacional.controlador;
  */
 public class VentanaAbogados extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaClientes
-     */
+    public static boolean mostrar;
+   
     public VentanaAbogados() {
         initComponents();
         this.setLocationRelativeTo(null);        
     }
-
+    public VentanaAbogados(Cliente c) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        tfdni.setText(c.getDni());
+        tfnombre.setText(c.getNombre());
+        tfapellidos.setText(c.getApellidos());
+        tfdireccion.setText(c.getDireccion());
+  
+        
+        mostrar=true;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -141,9 +152,24 @@ public class VentanaAbogados extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+        if(mostrar==true)
+       
         controlador.altaabogados(tfdni.getText(),tfnombre.getText(),tfapellidos.getText(),tfdireccion.getText());
+       
+       else
+        controlador.altaabogados(tfdni.getText(),tfnombre.getText(),tfapellidos.getText(),tfdireccion.getText());
+        }catch (Exception e) {}
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    public boolean mostrar(String datos)
+    {
+        JOptionPane.showMessageDialog(this,datos);
+        int respuesta = JOptionPane.showConfirmDialog(this,"¿ Estas seguro? Los datos se eliminarán de forma permanente");
+        if (respuesta == 0)
+            return true;
+        else
+            return false;
+    }
     /**
      * @param args the command line arguments
      */

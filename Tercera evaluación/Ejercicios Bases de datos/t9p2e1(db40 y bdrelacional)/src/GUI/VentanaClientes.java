@@ -6,6 +6,8 @@
 package GUI;
 
 import UML.Cliente;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import t9p2e1.db40.y.bdrelacional.controlador;
 
@@ -15,9 +17,8 @@ import t9p2e1.db40.y.bdrelacional.controlador;
  */
 public class VentanaClientes extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaClientes
-     */
+    public boolean mostrar;
+
     public VentanaClientes() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -30,6 +31,8 @@ public class VentanaClientes extends javax.swing.JFrame {
         tfapellidos.setText(c.getApellidos());
         tfdireccion.setText(c.getDireccion());
         tftelefono.setText(c.getTelefono());      
+        
+        mostrar=true;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -160,7 +163,14 @@ public class VentanaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        controlador.altaclientes(tfdni.getText(),tfnombre.getText(),tfapellidos.getText(),tfdireccion.getText(),tftelefono.getText());
+        try {
+        if(mostrar==true)
+       
+            controlador.modificacionclienteparte2(tfdni.getText(),tfnombre.getText(),tfapellidos.getText(),tfdireccion.getText(),tftelefono.getText());
+       
+       else
+            controlador.altaclientes(tfdni.getText(),tfnombre.getText(),tfapellidos.getText(),tfdireccion.getText(),tftelefono.getText());
+        }catch (Exception e) {}
     }//GEN-LAST:event_jButton1ActionPerformed
     public boolean mostrar(String datos)
     {

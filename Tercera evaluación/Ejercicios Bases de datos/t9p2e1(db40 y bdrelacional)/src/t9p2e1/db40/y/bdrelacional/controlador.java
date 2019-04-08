@@ -74,7 +74,8 @@ public class controlador {
     }
 
     public static void altaabogados(String dni,String nombre,String apellidos,String direccion) {
-        
+        a = new Abogado(dni,nombre,apellidos,direccion);
+        a = AbogadoDAO.altaabogado(a);
     }
 
     public static void altacasos(LocalDate fechaini, LocalDate fechafin, String estado) {
@@ -87,9 +88,17 @@ public class controlador {
     }
 
     public static void bajaabogado(String nombre) {
+       a = new Abogado(nombre);
 
+       a= AbogadoDAO.consultarabogado(a);
+       if (a != null)
+            if (va.mostrar(a.toString()) == true)
+                 AbogadoDAO.borrarabogado(a);
+            else
+                System.out.println("No se ha podido borrar");
+       else
+            System.out.println("Problemas");
     }
-
     public static void bajacliente(String nombre) {
        c = new Cliente(nombre);
 
@@ -119,6 +128,24 @@ public class controlador {
        c.setApellidos(apellidos);
        c.setDireccion(direccion);
        c.setTelefono(telefono);
-       c.modificar(c);
+       ClienteDAO.modificarcliente(c);
    }
+
+    public static void cosultarpersona(String nombre) {
+       c = ClienteDAO.consultar(new Cliente(nombre));
+       vc = new VentanaClientes(c);
+       vc.setVisible(true);
+    }
+
+    public static void bajaAbogado(String nombre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static void modificacionabogadoparte1(String nombre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static void cosultarabogado(String nombre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
