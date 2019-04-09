@@ -156,6 +156,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu3.add(jMenuItem8);
 
         jMenuItem9.setText("Modificacion");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem9);
 
         jMenuItem12.setText("Consulta");
@@ -196,7 +201,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
+        String num = JOptionPane.showInputDialog(null, "Introduce el numero de expediente del caso que quieres dar de baja");
+        controlador.bajacaso(num);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -229,21 +235,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        String nombre = JOptionPane.showInputDialog(null, "Introduce el nombre del cliente que quieres dar de baja");
-        controlador.bajaAbogado(nombre);
+        String nombre = JOptionPane.showInputDialog(null, "Introduce el nombre del abogado que quieres dar de baja");
+        controlador.bajaabogado(nombre);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        String nombre = JOptionPane.showInputDialog(null, "Introduce el nombre del cliente que quieres dar de modificar");
+        String nombre = JOptionPane.showInputDialog(null, "Introduce el nombre del abogado que quieres dar de modificar");
         try {
             controlador.modificacionabogadoparte1(nombre);
         } catch (Exception e) {}
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        String nombre = JOptionPane.showInputDialog(null, "Introduce el nombre del cliente que quieres dar de consultar");
+        String nombre = JOptionPane.showInputDialog(null, "Introduce el nombre del abogado que quieres dar de consultar");
         controlador.cosultarabogado(nombre);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        String num = JOptionPane.showInputDialog(null, "Introduce el numero de expediente del caso que quieres dar de modificar");
+        try {
+            controlador.modificacioncasoparte1(num);
+        } catch (Exception e) {}
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

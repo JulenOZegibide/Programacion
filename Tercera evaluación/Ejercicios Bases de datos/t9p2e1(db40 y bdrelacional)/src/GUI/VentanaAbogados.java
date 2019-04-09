@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import UML.Cliente;
+import UML.*;
 import javax.swing.JOptionPane;
 import t9p2e1.db40.y.bdrelacional.controlador;
 
@@ -21,7 +21,7 @@ public class VentanaAbogados extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);        
     }
-    public VentanaAbogados(Cliente c) {
+    public VentanaAbogados(Abogado c) {
         initComponents();
         this.setLocationRelativeTo(null);
         tfdni.setText(c.getDni());
@@ -155,7 +155,7 @@ public class VentanaAbogados extends javax.swing.JFrame {
         try {
         if(mostrar==true)
        
-        controlador.altaabogados(tfdni.getText(),tfnombre.getText(),tfapellidos.getText(),tfdireccion.getText());
+        controlador.modificacionabogadosparte2(tfdni.getText(),tfnombre.getText(),tfapellidos.getText(),tfdireccion.getText());
        
        else
         controlador.altaabogados(tfdni.getText(),tfnombre.getText(),tfapellidos.getText(),tfdireccion.getText());

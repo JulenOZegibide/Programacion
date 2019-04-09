@@ -8,6 +8,7 @@ package t9p2e1.db40.y.bdrelacional;
 import GUI.*;
 import UML.*;
 import BD.*;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 /**
@@ -22,6 +23,8 @@ public class controlador {
     public static VentanaCasos vcj;    
     public static Abogado a;  
     public static Cliente c;
+    public static CasoJudicial cj;
+    public static int numexp;
     public static void main(String[] args) {
         vp=new VentanaPrincipal();
         vp.setVisible(true);
@@ -78,9 +81,7 @@ public class controlador {
         a = AbogadoDAO.altaabogado(a);
     }
 
-    public static void altacasos(LocalDate fechaini, LocalDate fechafin, String estado) {
 
-    }
 
     public static void altaclientes(String dni,String nombre,String apellidos,String direccion,String telefono) {
         c = new Cliente(dni,nombre,apellidos,direccion,telefono);
@@ -136,16 +137,53 @@ public class controlador {
        vc = new VentanaClientes(c);
        vc.setVisible(true);
     }
-
-    public static void bajaAbogado(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public static void modificacionabogadoparte1(String nombre) {
+       a = AbogadoDAO.consultarabogado(new Abogado(nombre));
+       va = new VentanaAbogados(a);
+       va.setVisible(true);
+    }
+    public static void modificacionabogadosparte2(String dni,String nombre,String apellidos,String direccion) {
+       c.setDni(dni);
+       c.setNombre(nombre);
+       c.setApellidos(apellidos);
+       c.setDireccion(direccion);
+       AbogadoDAO.modificarabogado(a);
+    }
+    public static void cosultarabogado(String nombre) {
+       a = AbogadoDAO.consultarabogado(new Abogado(nombre));
+       va = new VentanaAbogados(a);
+       va.setVisible(true);
+    }
+
+    public static void altacasos(int numexp,LocalDate fechaini,String estado,String dni) {
+        cj = new CasoJudicial(numexp,fechaini,estado);
+        cj=CasosDAO.altacaso(cj);
+        
+        c = ClienteDAO.consultar(new Cliente(dni));   
+        
+        cj = new CasoJudicial(numexp,fechaini,estado,c);
+        cj=CasoClienteDAO.altacasocliente(cj);
+    }
+    public static void buscarNumexpediente() throws SQLException{
+        numexp = CasosDAO.buscarNumexpediente(numexp);
+        if(numexp==0)
+            vcj.asignar1(); 
+        else
+            vcj.asignarnumexp(numexp);            
+    }
+
+    public static void modificacioncasoparte1(String nombre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public static void modificacioncasoparte2(String dni,String nombre,String apellidos,String direccion) {
+       c.setDni(dni);
+       c.setNombre(nombre);
+       c.setApellidos(apellidos);
+       c.setDireccion(direccion);
+       AbogadoDAO.modificarabogado(a);
+    }
+    public static void bajacaso(String num) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public static void cosultarabogado(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

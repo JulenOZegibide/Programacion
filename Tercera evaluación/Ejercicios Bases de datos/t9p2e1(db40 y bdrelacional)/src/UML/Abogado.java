@@ -36,6 +36,10 @@ public class Abogado {
         this.direccion = direccion;
     }
 
+    public Abogado(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getDni() {
         return dni;
     }

@@ -54,7 +54,7 @@ public class AbogadoDAO {
         oc.store(c);
         return null;
     }    
-    public static Abogado modificarcliente(Abogado a){
+    public static Abogado modificarabogado(Abogado a){
         try
     {
     String plantilla = "UPDATE Abogados SET dni=?,nombre=?,apellidos=?,direccion=?";
