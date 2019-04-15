@@ -45,7 +45,11 @@ public class CasoJudicial {
         this.estado = estado;
     }
 
-    public int getNumexpediente() {
+    public CasoJudicial(int numexpediente) {
+        this.numexpediente = numexpediente;
+    }
+
+    public Integer getNumexpediente() {
         return numexpediente;
     }
 

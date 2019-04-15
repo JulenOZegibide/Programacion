@@ -5,6 +5,7 @@
  */
 package BD;
 
+import UML.Abogado;
 import UML.CasoJudicial;
 import com.db4o.ObjectContainer;
 import java.sql.Connection;
@@ -44,6 +45,10 @@ public class CasosDAO {
  
 
 
+    }
+
+    public static CasoJudicial consultarcaso(CasoJudicial cj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public CasosDAO(Connection con) {

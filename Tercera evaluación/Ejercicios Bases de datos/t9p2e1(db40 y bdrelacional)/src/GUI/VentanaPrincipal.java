@@ -202,7 +202,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         String num = JOptionPane.showInputDialog(null, "Introduce el numero de expediente del caso que quieres dar de baja");
-        controlador.bajacaso(num);
+        controlador.bajacaso(Integer.parseInt(num));
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -254,7 +254,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         String num = JOptionPane.showInputDialog(null, "Introduce el numero de expediente del caso que quieres dar de modificar");
         try {
-            controlador.modificacioncasoparte1(num);
+            controlador.modificacioncasoparte1(Integer.parseInt(num));
         } catch (Exception e) {}
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 

@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import static BD.CasosDAO.conversionDate;
+import UML.CasoJudicial;
 import java.time.LocalDate;
 import t9p2e1.db40.y.bdrelacional.controlador;
 
@@ -14,7 +16,9 @@ import t9p2e1.db40.y.bdrelacional.controlador;
  */
 public class VentanaCasos extends javax.swing.JFrame {
 
+    public static boolean mostrar;
     public static Integer nuevonum;
+    
     public VentanaCasos() {
         initComponents();  
         this.setLocationRelativeTo(null); 
@@ -24,6 +28,17 @@ public class VentanaCasos extends javax.swing.JFrame {
         dpfechaini.setText(LocalDate.now().toString());
         tfestado.setEnabled(false);
         tfestado.setText("En tramite");
+    }
+        public VentanaCasos(CasoJudicial cj) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        tfnumexp.setText(cj.getNumexpediente().toString());
+        dpfechaini.setText(conversionDate(cj.getFechaini()).toString());
+        tfestado.setText(cj.getEstado());
+        tfcliente.setText(cj.getCliente().toString());
+  
+        
+        mostrar=true;
     }
 
     /**

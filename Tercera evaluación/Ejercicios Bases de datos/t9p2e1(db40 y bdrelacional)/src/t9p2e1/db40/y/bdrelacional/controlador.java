@@ -172,18 +172,31 @@ public class controlador {
             vcj.asignarnumexp(numexp);            
     }
 
-    public static void modificacioncasoparte1(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static void modificacioncasoparte1(int num) {
+       cj = CasosDAO.consultarcaso(new CasoJudicial(num));
+       vcj = new VentanaCasos(cj);
+       va.setVisible(true);
     }
-    public static void modificacioncasoparte2(String dni,String nombre,String apellidos,String direccion) {
-       c.setDni(dni);
-       c.setNombre(nombre);
-       c.setApellidos(apellidos);
-       c.setDireccion(direccion);
+    public static void modificacioncasoparte2(int numexp,LocalDate fechaini,String estado,String dni){
+       c = ClienteDAO.consultar(new Cliente(dni));   
+        
+       cj.setNumexpediente(numexp);
+       cj.setFechaini(fechaini);
+       cj.setEstado(estado);
+       cj.setCliente(c);
        AbogadoDAO.modificarabogado(a);
     }
-    public static void bajacaso(String num) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static void bajacaso(int num) {
+       cj = new CasoJudicial(num);
+
+       c= ClienteDAO.consultar(c);
+       if (c != null)
+            if (vc.mostrar(c.toString()) == true)
+                 ClienteDAO.borrar(c);
+            else
+                System.out.println("No se ha podido borrar");
+       else
+            System.out.println("Problemas");
     }
 
 }
