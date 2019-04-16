@@ -10,6 +10,7 @@ import UML.*;
 import BD.*;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -80,8 +81,6 @@ public class controlador {
         a = new Abogado(dni,nombre,apellidos,direccion);
         a = AbogadoDAO.altaabogado(a);
     }
-
-
 
     public static void altaclientes(String dni,String nombre,String apellidos,String direccion,String telefono) {
         c = new Cliente(dni,nombre,apellidos,direccion,telefono);
