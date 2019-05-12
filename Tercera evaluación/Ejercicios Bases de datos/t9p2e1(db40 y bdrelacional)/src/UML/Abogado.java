@@ -29,6 +29,17 @@ public class Abogado {
         this.casos = casos;
     }
 
+    public Abogado(String dni, String nombre, String apellidos, String direccion) {
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.direccion = direccion;
+    }
+
+    public Abogado(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getDni() {
         return dni;
     }

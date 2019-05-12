@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author 1gdaw02
  */
 public class CasoJudicial {
-    private String numexpediente;
+    private int numexpediente;
     private LocalDate fechaini;
     private LocalDate fechafin;
     private String estado;
@@ -23,7 +23,7 @@ public class CasoJudicial {
     public CasoJudicial() {
     }
 
-    public CasoJudicial(String numexpediente, LocalDate fechaini, LocalDate fechafin, String estado, ArrayList<Abogado> abogados, Cliente cliente) {
+    public CasoJudicial(int numexpediente, LocalDate fechaini, LocalDate fechafin, String estado, ArrayList<Abogado> abogados, Cliente cliente) {
         this.numexpediente = numexpediente;
         this.fechaini = fechaini;
         this.fechafin = fechafin;
@@ -32,11 +32,28 @@ public class CasoJudicial {
         this.cliente = cliente;
     }
 
-    public String getNumexpediente() {
+    public CasoJudicial(int numexpediente, LocalDate fechaini, String estado, Cliente cliente) {
+        this.numexpediente = numexpediente;
+        this.fechaini = fechaini;
+        this.estado = estado;
+        this.cliente = cliente;
+    }
+
+    public CasoJudicial(int numexpediente, LocalDate fechaini, String estado) {
+        this.numexpediente = numexpediente;
+        this.fechaini = fechaini;
+        this.estado = estado;
+    }
+
+    public CasoJudicial(int numexpediente) {
+        this.numexpediente = numexpediente;
+    }
+
+    public Integer getNumexpediente() {
         return numexpediente;
     }
 
-    public void setNumexpediente(String numexpediente) {
+    public void setNumexpediente(int numexpediente) {
         this.numexpediente = numexpediente;
     }
 

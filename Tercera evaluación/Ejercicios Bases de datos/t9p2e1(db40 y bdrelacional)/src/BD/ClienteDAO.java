@@ -35,7 +35,7 @@ public class ClienteDAO {
         return java.sql.Time.valueOf(hora);
     }
     public static Cliente daralta(Cliente c) {
-    try{  
+        try{  
         String plantilla="INSERT INTO clientes VALUES (?,?,?,?,?,?);";
         PreparedStatement ps=con.prepareStatement(plantilla);
         ps.setString(1,c.getDni());
@@ -55,7 +55,7 @@ public class ClienteDAO {
         oc.store(c);
         return null;
     }    
-    public Cliente modificarcliente(Cliente c){
+    public static Cliente modificarcliente(Cliente c){
         try
     {
     String plantilla = "UPDATE Clientes SET dni=?,nombre=?,apellidos=?,direccion=?,telefono=?";
